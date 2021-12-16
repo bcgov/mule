@@ -166,7 +166,7 @@
         <muleAstVersion>1.1.0-20211216</muleAstVersion>
         <mulePropertiesApiVersion>1.1.0-20211216</mulePropertiesApiVersion>
         <muleExtensionsApiVersion>1.5.0-20211201</muleExtensionsApiVersion>
-        <muleConnectivityApiVersion>1.1.0-20211201</muleConnectivityApiVersion>
+        <muleConnectivityApiVersion>1.1.0-20211216</muleConnectivityApiVersion>
         <muleHttpPolicyApiVersion>1.5.0-20211201</muleHttpPolicyApiVersion>
         <muleMavenClientApi>1.7.0-20211201</muleMavenClientApi>
         <muleMavenClientImpl>1.7.0-20211201</muleMavenClientImpl>
