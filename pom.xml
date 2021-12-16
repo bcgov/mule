@@ -162,7 +162,7 @@
         <weaveVersion>2.5.0-20211216</weaveVersion>
 
         <!-- Mule Snapshot Dependencies -->
-        <muleDslApiVersion>1.5.0-20211201</muleDslApiVersion>
+        <muleDslApiVersion>1.5.0-20211216</muleDslApiVersion>
         <muleAstVersion>1.1.0-20211216</muleAstVersion>
         <mulePropertiesApiVersion>1.1.0-20211216</mulePropertiesApiVersion>
         <muleExtensionsApiVersion>1.5.0-20211216</muleExtensionsApiVersion>
