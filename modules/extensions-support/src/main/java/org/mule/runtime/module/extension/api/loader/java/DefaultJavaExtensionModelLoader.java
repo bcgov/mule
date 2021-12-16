@@ -13,7 +13,7 @@ import org.mule.runtime.extension.api.loader.ExtensionLoadingContext;
 import org.mule.runtime.module.extension.api.loader.AbstractJavaExtensionModelLoader;
 import org.mule.runtime.module.extension.api.loader.ModelLoaderDelegateFactory;
 import org.mule.runtime.module.extension.internal.loader.enricher.CustomStaticTypeDeclarationEnricher;
-import org.mule.runtime.module.extension.internal.loader.java.DefaultJavaModelLoaderDelegate;
+import org.mule.runtime.module.extension.internal.loader.base.delegate.DefaultExtensionModelLoaderDelegate;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class DefaultJavaExtensionModelLoader extends AbstractJavaExtensionModelL
   private List<DeclarationEnricher> customEnrichers = asList(new CustomStaticTypeDeclarationEnricher());
 
   public DefaultJavaExtensionModelLoader() {
-    super(JAVA_LOADER_ID, (ModelLoaderDelegateFactory) DefaultJavaModelLoaderDelegate::new);
+    super(JAVA_LOADER_ID, (ModelLoaderDelegateFactory) DefaultExtensionModelLoaderDelegate::new);
   }
 
   /**
