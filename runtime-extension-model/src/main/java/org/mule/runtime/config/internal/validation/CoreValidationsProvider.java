@@ -10,7 +10,6 @@ import static java.util.Arrays.asList;
 import static java.util.Optional.empty;
 
 import org.mule.runtime.api.config.FeatureFlaggingService;
-import org.mule.runtime.api.el.ExpressionLanguage;
 import org.mule.runtime.ast.api.validation.ArtifactValidation;
 import org.mule.runtime.ast.api.validation.Validation;
 import org.mule.runtime.ast.api.validation.ValidationsProvider;
@@ -26,9 +25,6 @@ public class CoreValidationsProvider implements ValidationsProvider {
 
   @Inject
   private final Optional<FeatureFlaggingService> featureFlaggingService = empty();
-
-  @Inject
-  private ExpressionLanguage expressionLanguage;
 
   @Override
   public List<Validation> get() {
@@ -59,9 +55,7 @@ public class CoreValidationsProvider implements ValidationsProvider {
                   new FirstSuccessfulRoutes(),
                   new ScatterGatherRoutes(),
                   new ParseTemplateResourceExist(artifactRegionClassLoader),
-                  new SourcePositiveMaxItemsPerPoll(),
-                  new ExpressionsSyntacticallyValid(expressionLanguage),
-                  new ExpressionsSyntacticallyValidWarns(expressionLanguage));
+                  new SourcePositiveMaxItemsPerPoll());
   }
 
   @Override
