@@ -83,7 +83,6 @@ public class BaseMuleArtifactContext extends AbstractRefreshableConfigApplicatio
   @Override
   protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
     super.customizeBeanFactory(beanFactory);
-    Registry originalRegistry = ((MuleRegistryHelper) (muleContext.getRegistry())).getDelegate();
     new BaseSpringMuleContextServiceConfigurator(muleContext,
                                                  configurationProperties,
                                                  artifactType,

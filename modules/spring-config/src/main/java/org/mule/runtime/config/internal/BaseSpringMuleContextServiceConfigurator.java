@@ -58,10 +58,10 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 class BaseSpringMuleContextServiceConfigurator extends AbstractSpringMuleContextServiceConfigurator {
 
   private final MuleContext muleContext;
-  private org.mule.runtime.core.internal.registry.Registry originalRegistry;
   private final ArtifactType artifactType;
   private final OptionalObjectsController optionalObjectsController;
   private final ConfigurationProperties configurationProperties;
+  private org.mule.runtime.core.internal.registry.Registry originalRegistry;
 
   public BaseSpringMuleContextServiceConfigurator(MuleContext muleContext,
                                                   ConfigurationProperties configurationProperties,
@@ -72,7 +72,6 @@ class BaseSpringMuleContextServiceConfigurator extends AbstractSpringMuleContext
                                                   org.mule.runtime.core.internal.registry.Registry originalRegistry) {
     super((CustomServiceRegistry) muleContext.getCustomizationService(), beanDefinitionRegistry, serviceLocator);
     this.muleContext = muleContext;
-    this.originalRegistry = originalRegistry;
     this.configurationProperties = configurationProperties;
     this.artifactType = artifactType;
     this.optionalObjectsController = optionalObjectsController;
