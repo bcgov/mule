@@ -327,6 +327,8 @@ public abstract class AbstractSpringRegistry extends AbstractRegistry implements
     }
   }
 
+  protected abstract <T> Map<String, T> lookupEntriesForLifecycleIncludingAncestors(Class<T> type);
+
   protected <T> Map<String, T> internalLookupByTypeWithoutAncestorsAndObjectProviders(Class<T> type, boolean nonSingletons,
                                                                                       boolean eagerInit) {
     return internalLookupByTypeWithoutAncestorsAndObjectProviders(type, nonSingletons, eagerInit, applicationContext);

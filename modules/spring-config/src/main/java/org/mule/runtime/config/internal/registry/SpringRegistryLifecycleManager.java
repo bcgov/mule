@@ -99,7 +99,7 @@ public class SpringRegistryLifecycleManager extends RegistryLifecycleManager {
 
       setIgnoredObjectTypes(new Class[] {
           ExtensionManager.class,
-          SpringRegistry.class,
+          AbstractSpringRegistry.class,
           SpringRegistryBootstrap.class,
           Component.class,
           InterceptingMessageProcessor.class,
@@ -147,7 +147,7 @@ public class SpringRegistryLifecycleManager extends RegistryLifecycleManager {
   }
 
   /**
-   * A lifecycle phase that will delegate to the {@link SpringRegistry#doDispose()} method which in turn will destroy the
+   * A lifecycle phase that will delegate to the {@link AbstractSpringRegistry#doDispose()} method which in turn will destroy the
    * application context managed by this registry
    */
   class SpringContextDisposePhase extends MuleContextDisposePhase {
@@ -166,8 +166,8 @@ public class SpringRegistryLifecycleManager extends RegistryLifecycleManager {
 
     @Override
     public void applyLifecycle(Object o) throws LifecycleException {
-      if (o instanceof SpringRegistry) {
-        ((SpringRegistry) o).doDispose();
+      if (o instanceof AbstractSpringRegistry) {
+        ((AbstractSpringRegistry) o).doDispose();
       } else if (o instanceof Transformer) {
         String name = ((Transformer) o).getName();
         if (isNamedBean(name)) {
@@ -184,7 +184,7 @@ public class SpringRegistryLifecycleManager extends RegistryLifecycleManager {
     }
   }
 
-  private SpringRegistry getSpringRegistry() {
-    return (SpringRegistry) getLifecycleObject();
+  private AbstractSpringRegistry getSpringRegistry() {
+    return (AbstractSpringRegistry) getLifecycleObject();
   }
 }
