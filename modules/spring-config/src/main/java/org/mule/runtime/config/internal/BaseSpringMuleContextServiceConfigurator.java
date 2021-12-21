@@ -17,6 +17,7 @@ import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_STREAMING_G
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_STREAMING_MANAGER;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_TRANSFORMERS_REGISTRY;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_TRANSFORMER_RESOLVER;
+import static org.mule.runtime.core.internal.config.bootstrap.AbstractRegistryBootstrap.BINDING_PROVIDER_PREDICATE;
 import static org.mule.runtime.core.internal.exception.ErrorTypeLocatorFactory.createDefaultErrorTypeLocator;
 
 import org.mule.runtime.api.artifact.Registry;
@@ -119,9 +120,8 @@ class BaseSpringMuleContextServiceConfigurator extends AbstractSpringMuleContext
     try {
       SpringRegistryBootstrap springRegistryBootstrap =
           new SpringRegistryBootstrap(artifactType, muleContext, optionalObjectsController, this::registerBeanDefinition,
-                                      propertyKey -> propertyKey.endsWith(".binding.provider")
-                                          || propertyKey.endsWith(".FunctionsProvider")
-                                          || propertyKey.endsWith(COMPATIBILITY_PLUGIN_INSTALLED));
+                                      BINDING_PROVIDER_PREDICATE
+                                          .or(propertyKey -> propertyKey.endsWith(COMPATIBILITY_PLUGIN_INSTALLED)));
       springRegistryBootstrap.initialise();
     } catch (InitialisationException e) {
       throw new RuntimeException(e);

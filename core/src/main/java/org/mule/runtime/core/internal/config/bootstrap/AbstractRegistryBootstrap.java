@@ -112,6 +112,11 @@ public abstract class AbstractRegistryBootstrap implements Initialisable {
   public static final String TRANSFORMER_KEY = ".transformer.";
   public static final String OBJECT_KEY = ".object.";
   public static final String SINGLE_TX = ".singletx.";
+  
+  /**
+   * Indicates if a propertyKey is a property that declares a bindingProvider to use in the expressions language
+   */
+  public static final Predicate<String> BINDING_PROVIDER_PREDICATE = propertyKey -> propertyKey.endsWith(".binding.provider") || propertyKey.endsWith(".FunctionsProvider");
 
   protected ArtifactType artifactType = APP;
   protected final transient Logger logger = LoggerFactory.getLogger(getClass());
@@ -167,7 +172,7 @@ public abstract class AbstractRegistryBootstrap implements Initialisable {
             singleTransactionFactories.add(createTransactionFactoryBootstrapProperty(bootstrapService, bootstrapProperties,
                                                                                      propertyKey, propertyValue));
           }
-        } else if (propertyKey.endsWith(".binding.provider") || propertyKey.endsWith(".FunctionsProvider")) {
+        } else if (BINDING_PROVIDER_PREDICATE.test(propertyKey)) {
           bindingProviders.add(createObjectBootstrapProperty(bootstrapService, propertyKey, propertyValue));
         } else {
           namedObjects.add(createObjectBootstrapProperty(bootstrapService, propertyKey, propertyValue));
