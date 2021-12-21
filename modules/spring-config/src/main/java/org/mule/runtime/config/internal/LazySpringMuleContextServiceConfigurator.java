@@ -23,7 +23,6 @@ import static org.mule.runtime.core.internal.metadata.cache.MetadataCacheManager
 import static org.mule.runtime.core.internal.store.SharedPartitionedPersistentObjectStore.SHARED_PERSISTENT_OBJECT_STORE_KEY;
 
 import org.mule.runtime.api.artifact.Registry;
-import org.mule.runtime.api.component.ConfigurationProperties;
 import org.mule.runtime.api.connectivity.ConnectivityTestingService;
 import org.mule.runtime.api.lock.LockFactory;
 import org.mule.runtime.api.metadata.MetadataService;
@@ -68,13 +67,12 @@ class LazySpringMuleContextServiceConfigurator extends SpringMuleContextServiceC
                                                   Map<String, String> artifactProperties,
                                                   LockFactory runtimeLockFactory,
                                                   MuleContextWithRegistry muleContext,
-                                                  ConfigurationProperties configurationProperties,
                                                   ArtifactType artifactType,
                                                   OptionalObjectsController optionalObjectsController,
                                                   BeanDefinitionRegistry beanDefinitionRegistry,
                                                   Registry serviceLocator,
                                                   ResourceLocator resourceLocator) {
-    super(muleContext, configurationProperties,
+    super(muleContext,
           artifactProperties, artifactType,
           optionalObjectsController, beanDefinitionRegistry,
           serviceLocator, resourceLocator);

@@ -60,7 +60,6 @@ import static org.mule.runtime.core.internal.metadata.cache.MetadataCacheManager
 import static org.mule.runtime.feature.api.management.FeatureFlaggingManagementService.PROFILING_FEATURE_MANAGEMENT_SERVICE_KEY;
 
 import org.mule.runtime.api.artifact.Registry;
-import org.mule.runtime.api.component.ConfigurationProperties;
 import org.mule.runtime.api.config.custom.ServiceConfigurator;
 import org.mule.runtime.api.lifecycle.InitialisationException;
 import org.mule.runtime.api.notification.ConnectionNotification;
@@ -231,11 +230,9 @@ class SpringMuleContextServiceConfigurator extends AbstractSpringMuleContextServ
       .put(PROFILING_FEATURE_MANAGEMENT_SERVICE_KEY, getBeanDefinition(DefaultFeatureManagementService.class))
       .build();
 
-  private final ConfigurationProperties configurationProperties;
   private final Map<String, String> artifactProperties;
 
   public SpringMuleContextServiceConfigurator(MuleContextWithRegistry muleContext,
-                                              ConfigurationProperties configurationProperties,
                                               Map<String, String> artifactProperties,
                                               ArtifactType artifactType,
                                               OptionalObjectsController optionalObjectsController,
@@ -245,7 +242,6 @@ class SpringMuleContextServiceConfigurator extends AbstractSpringMuleContextServ
     super((CustomServiceRegistry) muleContext.getCustomizationService(), beanDefinitionRegistry, serviceLocator);
 
     this.muleContext = muleContext;
-    this.configurationProperties = configurationProperties;
     this.artifactProperties = artifactProperties;
     this.customServiceRegistry = (CustomServiceRegistry) muleContext.getCustomizationService();
     this.artifactType = artifactType;
@@ -277,7 +273,7 @@ class SpringMuleContextServiceConfigurator extends AbstractSpringMuleContextServ
     createQueueManagerBeanDefinitions();
     createCustomServices();
 
-    artifactProperties.forEach((k, v) -> registerConstantBeanDefinition(k, v));
+    artifactProperties.forEach(this::registerConstantBeanDefinition);
   }
 
   private void loadServiceConfigurators() {
