@@ -531,6 +531,7 @@ public class MuleArtifactContext extends AbstractRefreshableConfigApplicationCon
 
   protected SpringMuleContextServiceConfigurator createServiceConfigurator(DefaultListableBeanFactory beanFactory) {
     return new SpringMuleContextServiceConfigurator(muleContext,
+                                                    getConfigurationProperties(),
                                                     artifactProperties,
                                                     getArtifactType(),
                                                     getOptionalObjectsController(),
@@ -619,6 +620,10 @@ public class MuleArtifactContext extends AbstractRefreshableConfigApplicationCon
 
   public MuleContextWithRegistry getMuleContext() {
     return muleContext;
+  }
+
+  protected PropertiesResolverConfigurationProperties getConfigurationProperties() {
+    return configurationProperties;
   }
 
   protected ArtifactType getArtifactType() {
