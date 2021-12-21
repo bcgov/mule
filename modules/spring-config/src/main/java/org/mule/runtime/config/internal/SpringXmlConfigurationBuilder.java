@@ -169,7 +169,8 @@ public class SpringXmlConfigurationBuilder extends AbstractResourceConfiguration
     ((DefaultMuleContext) muleContext).setInjector(baseRegistry);
     baseMuleArtifactContext.refresh();
 
-    muleArtifactContext = createApplicationContext(muleContext, applicationObjectController, parentConfigurationProperties,
+    muleArtifactContext = createApplicationContext(muleContext,
+                                                   applicationObjectController, parentConfigurationProperties,
                                                    baseMuleArtifactContext.getBean(BaseConfigurationComponentLocator.class),
                                                    baseMuleArtifactContext.getBean(ContributedErrorTypeRepository.class),
                                                    baseMuleArtifactContext.getBean(ContributedErrorTypeLocator.class),
