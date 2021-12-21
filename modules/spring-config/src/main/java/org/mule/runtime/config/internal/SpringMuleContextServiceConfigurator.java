@@ -19,6 +19,7 @@ import static org.mule.runtime.core.api.config.MuleProperties.LOCAL_OBJECT_STORE
 import static org.mule.runtime.core.api.config.MuleProperties.MULE_PROFILING_SERVICE_KEY;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_CLUSTER_SERVICE;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_COMPONENT_INITIAL_STATE_MANAGER;
+import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_CONFIGURATION_PROPERTIES;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_CONNECTION_MANAGER;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_CONNECTIVITY_TESTER_FACTORY;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_CONVERTER_RESOLVER;
@@ -261,6 +262,9 @@ class SpringMuleContextServiceConfigurator extends AbstractSpringMuleContextServ
   void createArtifactServices() {
     registerBeanDefinition(OBJECT_MULE_CONTEXT, createMuleContextDefinition());
     registerConstantBeanDefinition(DEFAULT_OBJECT_SERIALIZER_NAME, muleContext.getObjectSerializer());
+    // This configurationProperties will contain the properties configured in the app itself, taking precedence over the base one
+    // from the base registry
+    registerConstantBeanDefinition(OBJECT_CONFIGURATION_PROPERTIES, configurationProperties);
     registerConstantBeanDefinition(OBJECT_NOTIFICATION_HANDLER, muleContext.getNotificationManager());
     registerConstantBeanDefinition(OBJECT_STATISTICS, muleContext.getStatistics());
     registerConstantBeanDefinition(OBJECT_RESOURCE_LOCATOR, resourceLocator);
