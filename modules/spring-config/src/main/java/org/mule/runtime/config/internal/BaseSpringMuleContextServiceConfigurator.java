@@ -15,6 +15,8 @@ import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_EXPRESSION_
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_REGISTRY;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_STREAMING_GHOST_BUSTER;
 import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_STREAMING_MANAGER;
+import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_TRANSFORMERS_REGISTRY;
+import static org.mule.runtime.core.api.config.MuleProperties.OBJECT_TRANSFORMER_RESOLVER;
 import static org.mule.runtime.core.internal.exception.ErrorTypeLocatorFactory.createDefaultErrorTypeLocator;
 
 import org.mule.runtime.api.artifact.Registry;
@@ -34,7 +36,9 @@ import org.mule.runtime.core.internal.config.CustomServiceRegistry;
 import org.mule.runtime.core.internal.el.mvel.MVELExpressionLanguage;
 import org.mule.runtime.core.internal.exception.ContributedErrorTypeLocator;
 import org.mule.runtime.core.internal.exception.ContributedErrorTypeRepository;
+import org.mule.runtime.core.internal.registry.TypeBasedTransformerResolver;
 import org.mule.runtime.core.internal.streaming.StreamingGhostBuster;
+import org.mule.runtime.core.internal.transformer.DefaultTransformersRegistry;
 import org.mule.runtime.core.privileged.exception.ErrorTypeLocator;
 
 import java.util.Map;
@@ -95,6 +99,9 @@ class BaseSpringMuleContextServiceConfigurator extends AbstractSpringMuleContext
 
     registerBeanDefinition(OBJECT_STREAMING_MANAGER, getBeanDefinition(DefaultStreamingManager.class));
     registerBeanDefinition(OBJECT_STREAMING_GHOST_BUSTER, getBeanDefinition(StreamingGhostBuster.class));
+
+    registerBeanDefinition(OBJECT_TRANSFORMER_RESOLVER, getBeanDefinition(TypeBasedTransformerResolver.class));
+    registerBeanDefinition(OBJECT_TRANSFORMERS_REGISTRY, getBeanDefinition(DefaultTransformersRegistry.class));
 
     registerBeanDefinition(OBJECT_DW_EXPRESSION_LANGUAGE_ADAPTER,
                            getBeanDefinition(DataWeaveExtendedExpressionLanguageAdaptorFactoryBean.class));
