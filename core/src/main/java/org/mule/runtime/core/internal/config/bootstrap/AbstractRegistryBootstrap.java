@@ -114,6 +114,11 @@ public abstract class AbstractRegistryBootstrap implements Initialisable {
   public static final String SINGLE_TX = ".singletx.";
 
   /**
+   * Indicates if a propertyKey is a property that declares a transformer
+   */
+  public static final Predicate<String> TRANSFORMER_PREDICATE =
+      propertyKey -> propertyKey.contains(TRANSFORMER_KEY);
+  /**
    * Indicates if a propertyKey is a property that declares a bindingProvider to use in the expressions language
    */
   public static final Predicate<String> BINDING_PROVIDER_PREDICATE =
@@ -166,7 +171,7 @@ public abstract class AbstractRegistryBootstrap implements Initialisable {
         if (propertyKey.contains(OBJECT_KEY)) {
           String newKey = propertyKey.substring(0, propertyKey.lastIndexOf(".")) + objectCounter++;
           unnamedObjects.add(createObjectBootstrapProperty(bootstrapService, newKey, propertyValue));
-        } else if (propertyKey.contains(TRANSFORMER_KEY)) {
+        } else if (TRANSFORMER_PREDICATE.test(propertyKey)) {
           transformers.add(createTransformerBootstrapProperty(bootstrapService, propertyValue));
         } else if (propertyKey.contains(SINGLE_TX)) {
           if (!propertyKey.contains(TRANSACTION_RESOURCE_SUFFIX)) {

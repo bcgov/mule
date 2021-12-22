@@ -152,7 +152,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.inject.Inject;
 import javax.transaction.TransactionManager;
 
 import org.slf4j.Logger;
@@ -266,7 +265,6 @@ public class DefaultMuleContext implements MuleContextWithRegistry, PrivilegedMu
 
   private final LifecycleInterceptor lifecycleInterceptor = new MuleLifecycleInterceptor();
 
-  @Inject
   private ComponentInitialStateManager componentInitialStateManager;
 
   /**

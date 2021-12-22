@@ -95,7 +95,7 @@ public abstract class AbstractSpringRegistry extends AbstractRegistry implements
 
   @Override
   protected void doInitialise() throws InitialisationException {
-    if (!readOnly) {
+    if (!isReadOnly()) {
       ((ConfigurableApplicationContext) applicationContext).refresh();
     }
   }

@@ -74,6 +74,7 @@ public class SpringRegistry extends AbstractSpringRegistry {
     baseApplicationContext = null;
   }
 
+  @Override
   protected <T> Map<String, T> lookupEntriesForLifecycleIncludingAncestors(Class<T> type) {
     // respect the order in which spring had resolved the beans
     Map<String, T> objects = new LinkedHashMap<>();
