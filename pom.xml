@@ -1529,10 +1529,6 @@
             <name>Mule Repository</name>
             <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
         </repository>
-        <repository>
-            <id>local-maven-repo</id>
-            <url>file:///${project.parent.basedir}/mule-common/target</url>
-        </repository>
     </repositories>
 
     <pluginRepositories>
