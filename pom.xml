@@ -199,7 +199,7 @@
         <jsonSchemaValidatorVersion>2.2.8</jsonSchemaValidatorVersion>
         <junitVersion>4.12</junitVersion>
         <jythonVersion>2.7.1b3</jythonVersion>
-        <log4jVersion>2.8.2</log4jVersion>
+        <log4jVersion>2.17.1</log4jVersion>
         <disruptorVersion>3.3.0</disruptorVersion>
         <maven.buildnumber.plugin.version>1.1</maven.buildnumber.plugin.version>
         <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
